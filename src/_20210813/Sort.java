@@ -17,6 +17,10 @@ public class Sort {
         int[] insertionSort = tools.InsertionSort(randomArray);
         tools.print("[InsertionSort] >> \n"
                 + Arrays.toString(insertionSort));
+        tools.print(">> SelectionSort");
+        int[] selectionsort = tools.selectionsort(randomArray);
+        tools.print("[SelectionSort] >> \n"
+                + Arrays.toString(selectionsort));
     }
 
     private int[] getRandomArray() {

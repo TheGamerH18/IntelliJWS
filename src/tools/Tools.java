@@ -47,11 +47,29 @@ public class Tools {
         for (int i = 0; i < list.length; i++) {
             int wert = list[i];
             int j = i;
-            while ((j > 0) && list[j-1] > wert) {
+            while (j > 0 && list[j-1] > wert) {
                 list[j] = list[j -1];
                 j = j - 1;
             }
         }
         return list;
+    }
+
+    /**
+     *
+     * @param array zu Sortierendes Array
+     * @return Sortiertes Array
+     */
+    public int[] selectionsort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int i1 = 0; i1 < array.length; i1++) {
+                if(array[i] < array[i1]) {
+                    int temp = array[i];
+                    array[i] = array[i1];
+                    array[i1] = temp;
+                }
+            }
+        }
+        return array;
     }
 }
