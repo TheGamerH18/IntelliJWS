@@ -38,16 +38,21 @@ public class Tools {
     }
 
     /**
-     * Werte werden nacheinander ausgesucht. Danach wird das Array von vorne bis hinten durchsucht, nach der Korrekten
+     * Werte werden nacheinander ausgesucht. Danach wird das Array von hinten bis vorne durchsucht, nach der Korrekten
      * position für den Wert.
      * @param list zu Sortierende Liste
      * @return Sortierte Liste
      */
     public int[] InsertionSort(int[] list) {
+        // Jede Position soll einmal gewählt werde
         for (int i = 0; i < list.length; i++) {
+            // Aktueller Wert wird gespeichert
             int wert = list[i];
+            // Starten an der Aktuellen Position im Array
             int j = i;
+            // So lange der vorhergehende Wert im Array Größer ist, wird weiter gesucht
             while (j > 0 && list[j-1] > wert) {
+                // Zuletzt überprüfter Wert wird verschoben
                 list[j] = list[j -1];
                 j = j - 1;
             }
