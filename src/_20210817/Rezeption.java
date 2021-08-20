@@ -35,9 +35,12 @@ public class Rezeption {
     }
 
     private void einchecken(String Gastname) {
-        int id = getGastbyName(Gastname).getId();
+        Gast gast = getGastbyName(Gastname);
         Zimmer raum = getfreienraum();
-        if(getfreienraum().addguest(id)) tools.print(">> " + Gastname + " eingecheckt in raum nummer");
+        int id;
+        if(gast != null && raum != null) id = gast.getId();
+        else return;
+        if(raum.addguest(id)) tools.print(">> " + Gastname + " eingecheckt in raum nummer");
     }
 
     private Zimmer getfreienraum() {
@@ -49,8 +52,9 @@ public class Rezeption {
 
     private Gast getGastbyName(String Gastname) {
         for (Gast gast : gaeste) {
-            if(gast.)
+            if(gast.getName().equals(Gastname)) return gast;
         }
+        return null;
     }
 
     public static void main(String[] args) {
