@@ -1,5 +1,9 @@
 package tools;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Random;
+
 public class Tools {
 
     /**
@@ -8,6 +12,12 @@ public class Tools {
      */
     public void print(String text) {
         System.out.println(text);
+    }
+
+    public void print(Object[][] array) {
+        for (Object[] objects : array) {
+            print(Arrays.toString(objects));
+        }
     }
 
     /**
@@ -76,5 +86,17 @@ public class Tools {
             }
         }
         return array;
+    }
+
+    public String[][] setallvalues(String[][] array, String text) {
+        for (String[] strings : array) {
+            Arrays.fill(strings, text);
+        }
+        return array;
+    }
+
+    public int getrandom(int maxvalue) {
+        Random random = new Random();
+        return random.nextInt(maxvalue);
     }
 }
