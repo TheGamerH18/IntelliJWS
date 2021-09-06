@@ -2,8 +2,6 @@ package _20210820;
 
 import tools.Tools;
 
-import java.util.Arrays;
-
 public class MultiDimensionalArray {
 
     Tools tools = new Tools();

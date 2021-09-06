@@ -1,7 +1,5 @@
 package _20210817;
 
-import tools.Tools;
-
 public class Zimmer {
     private final String raumnummer;
     private final int ettage;
