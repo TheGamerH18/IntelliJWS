@@ -1,6 +1,12 @@
 package tools;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.management.BufferPoolMXBean;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -98,5 +104,56 @@ public class Tools {
     public int getrandom(int maxvalue) {
         Random random = new Random();
         return random.nextInt(maxvalue);
+    }
+
+
+    /**
+     * Search for a specified String in another String
+     * @param text Main string
+     * @param keyword String to find in other String
+     */
+    public boolean find(String text, String keyword) {
+        boolean found = false;
+
+        int n = text.length();
+        int m = keyword.length();
+        for(int i = 0; i < n - m + 1; i++) {
+            boolean match = true;
+            for(int j = 0; j < m; j++)
+                match &= (text.charAt(i + j) == keyword.charAt(j));
+            if(match) {
+                print("Gefunden an Position " + (i + 1));
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Reads Specified File and creates Array. Each index contains one line from the file
+     * @param path Path to File
+     * @param onelineoutput if true, every line seperate in Array. false = everything in one index ( 0 )
+     * @return Array containing every line from the file
+     */
+    public String[] readfromfile(String path, boolean onelineoutput) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line = br.readLine();
+
+            while (line != null) {
+                if (!onelineoutput) arrayList.add(line);
+                else {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                }
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(onelineoutput) arrayList.add(sb.toString());
+        return arrayList.toArray(new String[0]);
     }
 }
