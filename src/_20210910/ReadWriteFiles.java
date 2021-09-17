@@ -2,27 +2,23 @@ package _20210910;
 
 import tools.Tools;
 
+import java.io.*;
+import java.util.Scanner;
+
 public class ReadWriteFiles {
     public static void main(String[] args) {
         Tools tools = new Tools();
+        try {
+            FileReader f = new FileReader("C:\\Users\\PCMR-Portable\\Desktop\\txt.txt");
+            FileWriter w = new FileWriter("C:\\Users\\PCMR-Portable\\Desktop\\txt.txt");
 
-        // Define Keywords
-        String[] keyword = {"Waffen", "Drogen"};
+            w.write(new Scanner(System.in).next());
+            w.close();
 
-        // Read files
-        String file1 = tools.readfromfile("C:\\Users\\PCMR-Portable\\Desktop\\Hamburg.txt", true)[0];
-        String file2 = tools.readfromfile("C:\\Users\\PCMR-Portable\\Desktop\\Frankfurt.txt", true)[0];
-
-        // Search in Hamburg.txt
-        tools.print("Hamburg.txt");
-        for (String s : keyword) {
-            tools.find(file1, s);
+            for (int i = f.read(); i != -1; i = f.read()) System.out.print((char) i);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        // Search in Frankfurt.txt
-        tools.print("Frankfurt.txt");
-        for (String s : keyword) {
-            tools.find(file2, s);
-        }
     }
 }
