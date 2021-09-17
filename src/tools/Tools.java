@@ -1,11 +1,8 @@
 package tools;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.management.BufferPoolMXBean;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -18,6 +15,11 @@ public class Tools {
      */
     public void print(String text) {
         System.out.println(text);
+    }
+
+    public void print(String text, boolean nextline) {
+        if(nextline) System.out.println(text);
+        else System.out.print(text);
     }
 
     public void print(Object[][] array) {
