@@ -4,6 +4,7 @@ import tools.Tools;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -31,15 +32,23 @@ public class Logs {
             tools.print(strings[2] + " " + strings[3], true);
             tools.print("Endzeit: ", false);
             tools.print(strings[4] + " " + strings[5], true);
-            tools.print(getelapsedtime(strings[2], strings[3], strings[4], strings[5]));
+            tools.print("Dauer: " + getelapsedtime(strings[2], strings[3], strings[4], strings[5]));
             tools.print("", true);
         }
     }
 
     private String getelapsedtime(String startdate, String starttime, String enddate, String endtime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyyTHH:mm:ss");
-        formatter.parse(startdate + "T" + starttime);
-        return LocalDateTime.parse(startdate + "T" + starttime).toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyyHH:mm:ss");
+        LocalDateTime start = LocalDateTime.parse(startdate + starttime, formatter);
+        LocalDateTime end = LocalDateTime.parse(enddate+endtime, formatter);
+
+        long hours = start.until(end, ChronoUnit.HOURS);
+        start = start.plusHours(hours);
+        long minutes = start.until(end, ChronoUnit.MINUTES);
+        start = start.plusMinutes(minutes);
+        long seconds = start.until(end, ChronoUnit.SECONDS);
+
+        return hours + "h " + minutes + "m " + seconds + "s";
     }
 
     private ArrayList<String[]> searchbynumber(String number) {
