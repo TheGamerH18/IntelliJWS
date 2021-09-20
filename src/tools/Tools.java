@@ -1,8 +1,6 @@
 package tools;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -157,5 +155,13 @@ public class Tools {
         }
         if(onelineoutput) arrayList.add(sb.toString());
         return arrayList.toArray(new String[0]);
+    }
+
+    public void writetofile(String path, String text) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+            bw.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
