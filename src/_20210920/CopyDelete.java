@@ -2,10 +2,7 @@ package _20210920;
 
 import tools.Tools;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class CopyDelete {
     Tools tools = new Tools();
@@ -31,7 +28,7 @@ public class CopyDelete {
         while(!input.equals("end")) {
             tools.print("command");
             input = scan.next();
-            switch (input) {
+            switch (input.toLowerCase()) {
                 case "location" -> findbylocation();
                 case "nickname" -> findbynickname();
                 case "name" -> findbyname();
@@ -44,7 +41,7 @@ public class CopyDelete {
         int index = 2;
 
         tools.print("Location");
-        String input = scan.next();
+        String input = scan.next().toLowerCase();
         print(searchinarrayindex(input, index));
     }
 
@@ -52,7 +49,7 @@ public class CopyDelete {
         int index = 1;
 
         tools.print("Nickname");
-        String input = scan.next();
+        String input = scan.next().toLowerCase();
         print(searchinarrayindex(input, index));
     }
 
@@ -60,7 +57,7 @@ public class CopyDelete {
         int index = 0;
 
         tools.print("Name");
-        String input = scan.next();
+        String input = scan.next().toLowerCase();
         print(searchinarrayindex(input, index));
     }
 
@@ -85,6 +82,6 @@ public class CopyDelete {
     }
 
     public static void main(String[] args) {
-        CopyDelete copyDelete =new CopyDelete();
+        CopyDelete copyDelete = new CopyDelete();
     }
 }
