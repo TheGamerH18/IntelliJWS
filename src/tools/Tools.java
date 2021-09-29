@@ -26,6 +26,12 @@ public class Tools {
         }
     }
 
+    public void print(Object[] array) {
+        for (Object o : array) {
+            print(o.toString());
+        }
+    }
+
     /**
      * Überprüft Array von Integern auf Doppelte Werte
      * @param array Zu überprüfendes Array
@@ -155,6 +161,59 @@ public class Tools {
         }
         if(onelineoutput) arrayList.add(sb.toString());
         return arrayList.toArray(new String[0]);
+    }
+
+    public FileInputStream readfromfile(String path) {
+        try {
+            return new FileInputStream(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String[] readmp3Tags(FileInputStream file) {
+        String[] tags = new String[7];
+        try {
+            file.skip(file.available() - 128);
+            // Read Tag
+            tags[0] = read(file, 3);
+            // Read Title
+            tags[1] = read(file, 30);
+            // Read Interpret
+            tags[2] = read(file, 30);
+            // Read CD-Title
+            tags[3] = read(file, 30);
+            // Read Release Year
+            tags[4] = read(file, 4);
+            // Read Comment
+            tags[5] = read(file, 30);
+            // Read Genre
+            byte genre;
+            genre = (byte)file.read();
+            tags[6] = String.valueOf(genre);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tags;
+    }
+
+    public void changemp3tags(String path, String path2, String[] tags) throws IOException {
+        FileInputStream file = new FileInputStream(path);
+        int filelength = file.available();
+        byte[] cfile = new byte[file.available() - 128];
+        file.read(cfile);
+        String[] ctags = readmp3Tags(file);
+        byte[] nfile = new byte[filelength];
+        if (cfile.length + 1 >= 0) System.arraycopy(cfile, 0, nfile, 0, cfile.length + 1);
+
+        new FileOutputStream(path2).write(nfile);
+    }
+
+    private String read(FileInputStream file, int size) throws IOException {
+        byte[] data = new byte[size];
+        file.read(data);
+        return new String(data);
     }
 
     public void writetofile(String path, String text) {
