@@ -108,6 +108,9 @@ public class GUI extends JFrame {
 
         close = new JButton("Close");
         close.setBounds(340, 308, 155, 40);
+        close.addActionListener(e -> {
+            System.exit(1);
+        });
         contentPane.add(close);
     }
 }
