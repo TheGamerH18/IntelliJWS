@@ -119,6 +119,7 @@ public class GUI extends JFrame {
         outfullname.setText(person.getName());
         outbmi.setText(String.valueOf(person.calcBMI()));
         outevaluation.setText(person.evaluation());
+        person.writetofile();
     }
 
     private void clear() {

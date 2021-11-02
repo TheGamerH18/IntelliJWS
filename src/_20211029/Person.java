@@ -1,11 +1,16 @@
 package _20211029;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Person {
 
-    private String FirstName;
-    private String LastName;
-    private float Weight;
-    private float Height;
+    private final String FirstName;
+    private final String LastName;
+    private final float Weight;
+    private final float Height;
 
     private float BMI;
 
@@ -32,19 +37,11 @@ public class Person {
         return FirstName + " " + LastName;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
-
-    public void setWeight(int weight) {
-        Weight = weight;
-    }
-
-    public void setHeight(int height) {
-        Height = height;
+    public void writetofile() {
+        try(FileWriter writer = new FileWriter("data.txt")) {
+            writer.write(getName() + " " + Height + " " + Weight + " " + BMI + " " + evaluation());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
