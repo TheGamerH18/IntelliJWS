@@ -4,12 +4,12 @@ public class Person {
 
     private String FirstName;
     private String LastName;
-    private int Weight;
-    private int Height;
+    private float Weight;
+    private float Height;
 
-    private int BMI;
+    private float BMI;
 
-    public int calcBMI() {
+    public float calcBMI() {
         this.BMI = Weight / (Height * Height);
         return this.BMI;
     }
@@ -21,7 +21,7 @@ public class Person {
         return "Extreme overweight";
     }
 
-    public Person(String firstName, String lastName, int weight, int height) {
+    public Person(String firstName, String lastName, float weight, float height) {
         FirstName = firstName;
         LastName = lastName;
         Weight = weight;

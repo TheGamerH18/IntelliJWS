@@ -77,7 +77,7 @@ public class GUI extends JFrame {
 
         outfullname = new JTextField();
         outfullname.setBounds(175, 180, 320, 31);
-        outfullname.setEnabled(false);
+        outfullname.setEditable(false);
         contentPane.add(outfullname);
 
         JLabel labeloutbmi = new JLabel("Your BMI is:");
@@ -86,7 +86,7 @@ public class GUI extends JFrame {
 
         outbmi = new JTextField();
         outbmi.setBounds(175, 216, 320, 31);
-        outbmi.setEnabled(false);
+        outbmi.setEditable(false);
         contentPane.add(outbmi);
 
         JLabel labeloutevaluation = new JLabel("Evaluation:");
@@ -95,22 +95,40 @@ public class GUI extends JFrame {
 
         outevaluation = new JTextField();
         outevaluation.setBounds(175, 252, 320, 31);
-        outevaluation.setEnabled(false);
+        outevaluation.setEditable(false);
         contentPane.add(outevaluation);
 
         clear = new JButton("Clear");
         clear.setBounds(10, 308, 155, 40);
+        clear.addActionListener(e -> clear());
         contentPane.add(clear);
 
         calc = new JButton("Calculate");
         calc.setBounds(175, 308, 155, 40);
+        calc.addActionListener(e -> calc());
         contentPane.add(calc);
 
         close = new JButton("Close");
         close.setBounds(340, 308, 155, 40);
-        close.addActionListener(e -> {
-            System.exit(1);
-        });
+        close.addActionListener(e -> System.exit(1));
         contentPane.add(close);
+    }
+
+    private void calc() {
+        Person person = new Person(fieldfirstname.getText(), fieldlastname.getText(), Float.parseFloat(fieldweight.getText()), Float.parseFloat(fieldheight.getText()));
+        outfullname.setText(person.getName());
+        outbmi.setText(String.valueOf(person.calcBMI()));
+        outevaluation.setText(person.evaluation());
+    }
+
+    private void clear() {
+        outevaluation.setText("");
+        outbmi.setText("");
+        outfullname.setText("");
+
+        fieldheight.setText("");
+        fieldweight.setText("");
+        fieldfirstname.setText("");
+        fieldlastname.setText("");
     }
 }
