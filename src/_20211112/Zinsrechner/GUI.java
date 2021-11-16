@@ -21,6 +21,7 @@ public class GUI extends JFrame {
 
         JTextField startcapital = new JTextField();
         startcapital.setBounds(160, 10, 150, 30);
+        startcapital.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(startcapital);
 
         JLabel interestratelabel = new JLabel("Interest Rate in %");
@@ -29,6 +30,7 @@ public class GUI extends JFrame {
 
         JTextField interestrate = new JTextField();
         interestrate.setBounds(160, 50, 150, 30);
+        interestrate.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(interestrate);
 
         JLabel runtimelabel = new JLabel("Time in Years");
@@ -36,6 +38,7 @@ public class GUI extends JFrame {
         getContentPane().add(runtimelabel);
 
         JTextField runtime = new JTextField();
+        runtime.setHorizontalAlignment(SwingConstants.RIGHT);
         runtime.setBounds(160, 90, 150, 30);
         getContentPane().add(runtime);
 
