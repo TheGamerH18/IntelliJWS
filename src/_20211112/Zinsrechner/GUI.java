@@ -54,20 +54,20 @@ public class GUI extends JFrame {
         close.addActionListener(e -> System.exit(1));
         getContentPane().add(close);
 
-        output.setBounds(10, 130, getWidth()-30, getHeight()-180);
-        output.setEditable(false);
-        output.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(output);
         scrollPane.setBounds(10, 130, getWidth()-30, getHeight()-180);
         getContentPane().add(scrollPane);
 
+        output.setBounds(10, 130, scrollPane.getWidth(), scrollPane.getHeight());
+        output.setEditable(false);
+        output.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                output.setBounds(10, 130, getWidth()-30, getHeight()-180);
+                output.setBounds(10, 130, scrollPane.getWidth(), scrollPane.getHeight());
                 scrollPane.setBounds(10, 130, getWidth()-30, getHeight()-180);
             }
         });
