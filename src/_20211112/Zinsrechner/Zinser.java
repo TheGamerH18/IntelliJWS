@@ -64,8 +64,7 @@ public class Zinser {
         for(int i = 0; i < laufzeit; i ++) {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             String laufzeit = Integer.toString(i + 1);
-            double temp2 = doubles.get(i)[0];
-            String zinsen = formatter.format(temp2);
+            String zinsen = formatter.format(doubles.get(i)[0]);
             String endkapital = formatter.format(doubles.get(i)[1]);
 
             line = laufzeit +
@@ -99,9 +98,10 @@ public class Zinser {
     }
 
     private int getlongest(ArrayList<double[]> doubles, int index) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int longest = 0;
         for (double[] aDouble : doubles) {
-            String number = cutnumber(Double.toString(aDouble[index]));
+            String number = formatter.format(aDouble[index]);
             if(number.length() > longest) {
                 longest = (number + " EUR").length();
             }
