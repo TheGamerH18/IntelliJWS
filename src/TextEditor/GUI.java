@@ -48,7 +48,10 @@ public class GUI extends JFrame {
         getContentPane().add(savebtn);
 
         textField.setBounds(10, 50, getWidth() - 35, getHeight() - 100);
-        getContentPane().add(textField);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 50, getWidth()-35, getHeight()-100);
+        scrollPane.setViewportView(textField);
+        getContentPane().add(scrollPane);
 
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -61,6 +64,7 @@ public class GUI extends JFrame {
                 savetext.setBounds(widths*4+10, 10, widths, 30);
                 savebtn.setBounds(widths*5+10, 10, widths, 30);
                 textField.setBounds(10, 50, getWidth() - 35, getHeight() - 100);
+                scrollPane.setBounds(10, 50, getWidth() - 35, getHeight() - 100);
             }
         });
 
