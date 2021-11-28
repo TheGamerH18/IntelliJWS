@@ -75,7 +75,7 @@ public class GUI extends JFrame {
         FileDialog fd = new FileDialog(this, "Choose File", FileDialog.LOAD);
         fd.setVisible(true);
         if(fd.getFile() == null) return;
-        fileHandler.setInpath(fd.getFile());
+        fileHandler.setInpath(fd.getDirectory() + fd.getFile());
         if(fileHandler.readfile()) textField.setText(fileHandler.getText());
         else textField.setText("Path Invalid");
     }
