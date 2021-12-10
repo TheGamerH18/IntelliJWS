@@ -20,7 +20,7 @@ public class Tools {
         else System.out.print(text);
     }
 
-    public void print(Object[][] array) {
+    public void printmulti(Object[][] array) {
         for (Object[] objects : array) {
             print(Arrays.toString(objects));
         }
