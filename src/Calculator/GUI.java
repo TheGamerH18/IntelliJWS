@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class GUI extends JFrame {
 
     String currentinput = "";
-    ArrayList<Integer> zahlen = new ArrayList<>();
+    ArrayList<Integer> numbers = new ArrayList<>();
+    ArrayList<Integer> operator = new ArrayList<>();
 
     JTextField output;
 
@@ -30,19 +31,19 @@ public class GUI extends JFrame {
         for(int i = 0; i < 13; i++) {
             if(i == 3) {
                 buttons[i] = new JButton("+") {{
-                    addActionListener(e -> setPlus());
+                    addActionListener(e -> setOperator('+'));
                 }};
                 differ ++;
             }
             else if(i == 7) {
                 buttons[i] = new JButton("-") {{
-                    addActionListener(null);
+                    addActionListener(e -> setOperator('-'));
                 }};
                 differ ++;
             }
             else if(i == 11) {
                 buttons[i] = new JButton("/") {{
-                    addActionListener(null);
+                    addActionListener(e -> setOperator('/'));
                 }};
                 differ ++;
             }
@@ -52,7 +53,7 @@ public class GUI extends JFrame {
         }
 
         buttons[13] = new JButton("*") {{
-            addActionListener(null);
+            addActionListener(e -> setOperator('*'));
         }};
 
         buttons[14] = new JButton("=") {{
@@ -72,13 +73,13 @@ public class GUI extends JFrame {
     private String setTextfield(){
         StringBuilder stringBuilder = new StringBuilder();
         boolean hasvalue = false;
-        for (int i = 0; i < zahlen.size(); i++) {
-            stringBuilder.append(zahlen.get(i));
-            if(i < zahlen.size() -1) stringBuilder.append("+");
+        for (int i = 0; i < numbers.size(); i++) {
+            stringBuilder.append(numbers.get(i));
+            if(i < numbers.size() -1) stringBuilder.append((char) (int) operator.get(i));
             hasvalue = true;
         }
         if(!currentinput.equalsIgnoreCase("")) {
-            if(hasvalue) stringBuilder.append("+");
+            if(hasvalue) stringBuilder.append((char) (int) operator.get(operator.size()-1));
             stringBuilder.append(currentinput);
         }
         return stringBuilder.toString();
@@ -89,23 +90,39 @@ public class GUI extends JFrame {
         output.setText(setTextfield());
     }
 
-    private void setPlus(){
-        System.out.println("Plus");
-        int currentnumber = 0;
-        if(!currentinput.equalsIgnoreCase("")) currentnumber = Integer.parseInt(currentinput);
-        else return;
-        currentinput = "";
-        zahlen.add(currentnumber);
+    private void setOperator(char operator) {
+        System.out.println(operator);
+        validatecurrentinput();
+        this.operator.add((int) operator);
     }
 
     private void calc() {
-        setPlus();
-        int value = 0;
-        for (Integer integer : zahlen) {
-            value += integer;
+        try {
+            validatecurrentinput();
+            int value = numbers.get(0);
+            for (int i = 1; i < numbers.size(); i++) {
+                int usevalue = numbers.get(i);
+                if(i-1 < operator.size()) {
+                    switch(operator.get(i-1)) {
+                        case((int) '+') -> value += usevalue;
+                        case((int) '-') -> value -= usevalue;
+                        case((int) '*') -> value *= usevalue;
+                        case((int) '/') -> value /= usevalue;
+                    }
+                    System.out.println(value);
+                }
+            }
+            output.setText(String.valueOf(value));
+        } finally {
+            numbers.clear();
+            operator.clear();
+            currentinput = "";
         }
-        output.setText(String.valueOf(value));
-        zahlen.clear();
+    }
+
+    private void validatecurrentinput() {
+        int currentnumber = (!currentinput.equalsIgnoreCase("")) ? Integer.parseInt(currentinput) : 0;
+        numbers.add(currentnumber);
         currentinput = "";
     }
 
