@@ -1,10 +1,13 @@
 package Calculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Worker {
 
 
+    private final HashMap<Runner, Character> availableoperators = new HashMap<>();
     private String currentinput = "";
     private final ArrayList<Integer> numbers = new ArrayList<>();
     private final ArrayList<Integer> operator = new ArrayList<>();
@@ -59,6 +62,9 @@ public class Worker {
         currentinput = "";
     }
 
+    public void addOperator(char character, Runner method) {
+        availableoperators.put(method, character);
+    }
 
     /**
      * Calculates the result of the calculation
@@ -67,25 +73,29 @@ public class Worker {
     public String calc() {
         try {
             validatecurrentinput();
-            int value = numbers.get(0);
+            AtomicInteger value = new AtomicInteger(numbers.get(0));
             for (int i = 1; i < numbers.size(); i++) {
                 int usevalue = numbers.get(i);
                 if(i-1 < operator.size()) {
-                    switch(operator.get(i-1)) {
-                        case((int) '+') -> value += usevalue;
-                        case((int) '-') -> value -= usevalue;
-                        case((int) '*') -> value *= usevalue;
-                        case((int) '/') -> value /= usevalue;
-                    }
-                    System.out.println(value);
+                    int finalI = i;
+                    availableoperators.forEach((runnable, character) -> {
+                        if((char) character == operator.get(finalI -1)){
+                            value.set(runnable.run(value.get(), usevalue));
+                        }
+                    });
+                    System.out.println(value.get());
                 }
             }
-            output = String.valueOf(value);
+            output = String.valueOf(value.get());
         } finally {
             numbers.clear();
             operator.clear();
             currentinput = "";
         }
         return output;
+    }
+
+    public interface Runner{
+        int run(int value, int othervalue);
     }
 }

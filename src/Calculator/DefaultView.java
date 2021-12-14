@@ -57,6 +57,11 @@ public class DefaultView extends JPanel {
             addActionListener(e -> output.setText(worker.calc()));
         }};
 
+        worker.addOperator('+', Integer::sum);
+        worker.addOperator('-', (value, othervalue) -> value - othervalue);
+        worker.addOperator('/', (value, othervalue) -> value / othervalue);
+        worker.addOperator('*', (value, othervalue) -> value * othervalue);
+
         for (JButton button : buttons) {
             if(button != null) gridpanel.add(button);
         }
