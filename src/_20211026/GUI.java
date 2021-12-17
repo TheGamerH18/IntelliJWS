@@ -9,10 +9,10 @@ import java.util.Objects;
 
 public class GUI extends JFrame {
 
-    private Font globalFont = new Font("Tahoma", Font.PLAIN, 12);
+    private final Font globalFont = new Font("Tahoma", Font.PLAIN, 12);
 
-    private JTextField jTextField;
-    private JPanel contentPane;
+    private final JTextField jTextField;
+    private final JPanel contentPane;
 
     public GUI() {
         setTitle("GUI");

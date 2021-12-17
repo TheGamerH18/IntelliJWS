@@ -4,7 +4,7 @@ public class Zimmer {
     private final String raumnummer;
     private final int ettage;
     private final int bettenzahl;
-    private int[] gaeste;
+    private final int[] gaeste;
 
     public Zimmer(int bettenzahl, int ettage, String raumnummer) {
         gaeste = new int[bettenzahl];

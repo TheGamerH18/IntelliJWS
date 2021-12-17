@@ -1,7 +1,6 @@
 package Calculator;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GUI extends JFrame {
 
@@ -19,7 +18,7 @@ public class GUI extends JFrame {
             }});
         }};
 
-        setJMenuBar(new JMenuBar(){{
+        setJMenuBar(new JMenuBar() {{
             add(menu);
         }});
 

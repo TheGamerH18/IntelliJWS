@@ -18,7 +18,7 @@ public class Rezeption {
         Random random = new Random();
         for (int i = 0; i < zimmer.length; i++) {
             int ettage = (i > 15) ? 1 : 2;
-            zimmer[i] = new Zimmer(random.nextInt(10) + 1, ettage, String.valueOf(ettage) + String.valueOf(i));
+            zimmer[i] = new Zimmer(random.nextInt(10) + 1, ettage, String.valueOf(ettage) + i);
         }
     }
 

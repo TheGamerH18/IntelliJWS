@@ -10,7 +10,7 @@ public class ExtendedView extends JPanel {
     JTextField output = new JTextField() {{
         setPreferredSize(new Dimension(100000, 50));
     }};
-    
+
     public ExtendedView() {
         JPanel gridlayout = new JPanel(new GridLayout(5, 5));
 

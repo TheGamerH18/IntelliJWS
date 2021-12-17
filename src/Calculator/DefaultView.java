@@ -25,27 +25,24 @@ public class DefaultView extends JPanel {
         }
 
         int differ = 0;
-        for(int i = 0; i < 13; i++) {
-            if(i == 3) {
+        for (int i = 0; i < 13; i++) {
+            if (i == 3) {
                 buttons[i] = new JButton("+") {{
                     addActionListener(e -> output.setText(worker.setOperator('+')));
                 }};
-                differ ++;
-            }
-            else if(i == 7) {
+                differ++;
+            } else if (i == 7) {
                 buttons[i] = new JButton("-") {{
                     addActionListener(e -> output.setText(worker.setOperator('-')));
                 }};
-                differ ++;
-            }
-            else if(i == 11) {
+                differ++;
+            } else if (i == 11) {
                 buttons[i] = new JButton("/") {{
                     addActionListener(e -> output.setText(worker.setOperator('/')));
                 }};
-                differ ++;
-            }
-            else if((i-differ) < numbers.length){
-                buttons[i] = numbers[i -differ];
+                differ++;
+            } else if ((i - differ) < numbers.length) {
+                buttons[i] = numbers[i - differ];
             }
         }
 
@@ -63,7 +60,7 @@ public class DefaultView extends JPanel {
         worker.addOperator('*', (value, othervalue) -> value * othervalue);
 
         for (JButton button : buttons) {
-            if(button != null) gridpanel.add(button);
+            if (button != null) gridpanel.add(button);
         }
 
         output = new JTextField() {{

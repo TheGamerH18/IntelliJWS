@@ -8,10 +8,9 @@ public class Worker {
 
 
     private final HashMap<Runner, Character> availableoperators = new HashMap<>();
-    private String currentinput = "";
     private final ArrayList<Integer> numbers = new ArrayList<>();
     private final ArrayList<Integer> operator = new ArrayList<>();
-
+    private String currentinput = "";
     private String output = "";
 
     public String getOutput() {
@@ -20,6 +19,7 @@ public class Worker {
 
     /**
      * Add a number to the current input
+     *
      * @param value number to add as int
      * @return String made by {@link #setTextfield()} / representation of calculation as String
      */
@@ -30,6 +30,7 @@ public class Worker {
 
     /**
      * Adds Operator to List and validates and saves last number that was inputed
+     *
      * @param operator operator to add as char
      * @return String made by {@link #setTextfield()} / representation of calculation as String
      */
@@ -42,15 +43,16 @@ public class Worker {
 
     /**
      * Creates Output String based on numbers and operators in Arraylists list
+     *
      * @return created String
      */
-    private String setTextfield(){
+    private String setTextfield() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < numbers.size(); i++) {
             stringBuilder.append(numbers.get(i));
-            if(i < operator.size()) stringBuilder.append((char) (int) operator.get(i));
+            if (i < operator.size()) stringBuilder.append((char) (int) operator.get(i));
         }
-        if(!currentinput.equalsIgnoreCase("")) {
+        if (!currentinput.equalsIgnoreCase("")) {
             stringBuilder.append(currentinput);
         }
         return stringBuilder.toString();
@@ -68,6 +70,7 @@ public class Worker {
 
     /**
      * Calculates the result of the calculation
+     *
      * @return String representation of the result
      */
     public String calc() {
@@ -76,10 +79,10 @@ public class Worker {
             AtomicInteger value = new AtomicInteger(numbers.get(0));
             for (int i = 1; i < numbers.size(); i++) {
                 int usevalue = numbers.get(i);
-                if(i-1 < operator.size()) {
+                if (i - 1 < operator.size()) {
                     int finalI = i;
                     availableoperators.forEach((runnable, character) -> {
-                        if((char) character == operator.get(finalI -1)){
+                        if ((char) character == operator.get(finalI - 1)) {
                             value.set(runnable.run(value.get(), usevalue));
                         }
                     });
@@ -95,7 +98,7 @@ public class Worker {
         return output;
     }
 
-    public interface Runner{
+    public interface Runner {
         int run(int value, int othervalue);
     }
 }

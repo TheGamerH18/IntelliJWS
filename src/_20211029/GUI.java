@@ -8,23 +8,23 @@ import java.util.Objects;
 public class GUI extends JFrame {
 
     // Normal font
-    private Font globalFont = new Font("Tahoma", Font.PLAIN, 12);
+    private final Font globalFont = new Font("Tahoma", Font.PLAIN, 12);
 
     // Contentpane
-    private JPanel contentPane;
+    private final JPanel contentPane;
     // Input Fields
-    private JTextField fieldfirstname;
-    private JTextField fieldlastname;
-    private JTextField fieldweight;
-    private JTextField fieldheight;
+    private final JTextField fieldfirstname;
+    private final JTextField fieldlastname;
+    private final JTextField fieldweight;
+    private final JTextField fieldheight;
     // Output Fields
-    private JTextField outfullname;
-    private JTextField outbmi;
-    private JTextField outevaluation;
+    private final JTextField outfullname;
+    private final JTextField outbmi;
+    private final JTextField outevaluation;
     // Buttons
-    private JButton calc;
-    private JButton clear;
-    private JButton close;
+    private final JButton calc;
+    private final JButton clear;
+    private final JButton close;
 
     GUI() {
         setTitle("Body Mass Index");

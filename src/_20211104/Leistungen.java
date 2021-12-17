@@ -1,9 +1,9 @@
 package _20211104;
 
 public class Leistungen {
-    private int Klassenarbeit1;
-    private int Klassenarbeit2;
-    private int Mundlich;
+    private final int Klassenarbeit1;
+    private final int Klassenarbeit2;
+    private final int Mundlich;
 
     /**
      * Konstruktor für die Leistung eines Schülers zum weiteren analysieren

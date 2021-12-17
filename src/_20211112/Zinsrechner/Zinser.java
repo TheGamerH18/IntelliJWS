@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Zinser {
 
-    private String Year = "Jahr";
-    private String interest = "Zinsen";
-    private String indcapital = "Endkapital";
+    private final String Year = "Jahr";
+    private final String interest = "Zinsen";
+    private final String indcapital = "Endkapital";
 
-    private int laufzeit;
-    private double zinssatz;
-    private long kapital;
+    private final int laufzeit;
+    private final double zinssatz;
+    private final long kapital;
 
     public Zinser(int laufzeit, double zinssatz, long kapital) {
         this.laufzeit = laufzeit;
